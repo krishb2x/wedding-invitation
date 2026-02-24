@@ -10,97 +10,93 @@
 <style>
 body {
     margin: 0;
-    padding: 0;
+    padding: 20px 10px;
     background: radial-gradient(circle at top, #6b0f1a, #1b0005);
     font-family: 'Cinzel', serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    overflow: hidden;
+    text-align: center;
     color: #f5e6c8;
 }
 
 /* Opening Screen */
 .open-screen {
-    text-align: center;
+    margin-top: 30vh;
 }
 
 .monogram {
     font-family: 'Great Vibes', cursive;
-    font-size: 60px;
+    font-size: 50px;
     color: #d4af37;
     text-shadow: 0 0 20px gold;
     margin-bottom: 20px;
 }
 
 .open-btn {
-    padding: 18px 45px;
+    padding: 15px 35px;
     background: linear-gradient(45deg, #d4af37, #b8860b);
     border-radius: 50px;
     cursor: pointer;
-    font-size: 18px;
-    letter-spacing: 3px;
+    font-size: 16px;
+    letter-spacing: 2px;
     color: #5a0f1c;
     font-weight: bold;
-    box-shadow: 0 0 25px rgba(212,175,55,0.8);
+    box-shadow: 0 0 20px rgba(212,175,55,0.8);
     transition: 0.4s;
+    display: inline-block;
 }
-.open-btn:hover { transform: scale(1.08); }
+.open-btn:hover { transform: scale(1.05); }
 
 /* Scroll Container */
 .scroll-container {
     display: none;
-    text-align: center;
-    animation: fadeIn 2s ease forwards;
-    padding: 20px;
+    margin-top: 30px;
+    animation: fadeIn 1.5s ease forwards;
 }
 
 .rod {
-    width: 650px;
-    max-width: 95%;
-    height: 20px;
+    width: 100%;
+    max-width: 650px;
+    height: 15px;
     background: linear-gradient(to right, #d4af37, #b8860b, #d4af37);
     border-radius: 20px;
     margin: auto;
 }
 
 .scroll {
-    width: 600px;
-    max-width: 95%;
-    padding: 50px 30px;
+    max-width: 650px;
+    margin: auto;
+    padding: 40px 20px;
     background: #fff8e7;
     color: #5a0f1c;
-    box-shadow: 0 0 40px rgba(212,175,55,0.7);
-    border-left: 10px solid #d4af37;
-    border-right: 10px solid #d4af37;
+    box-shadow: 0 0 30px rgba(212,175,55,0.6);
+    border-left: 8px solid #d4af37;
+    border-right: 8px solid #d4af37;
     position: relative;
-    animation: unfold 1.5s ease forwards;
+    animation: unfold 1s ease forwards;
 }
 
 .scroll:before {
     content: "";
     position: absolute;
-    inset: 20px;
+    inset: 15px;
     border: 2px solid #d4af37;
 }
 
 /* Typography */
 h1 {
     font-family: 'Great Vibes', cursive;
-    font-size: 36px;
+    font-size: 32px;
     margin-bottom: 10px;
 }
 
 .shloka {
     font-style: italic;
-    font-size: 16px;
-    margin-bottom: 20px;
+    font-size: 14px;
+    margin-bottom: 15px;
     color: #b8860b;
 }
 
 .names .main {
-    font-size: 38px;
+    font-size: 28px;
     font-weight: bold;
     background: linear-gradient(90deg, #b8860b, #ffd700, #b8860b);
     background-size: 200%;
@@ -111,14 +107,14 @@ h1 {
 
 .and-text {
     display: block;
-    font-size: 18px;
-    letter-spacing: 6px;
-    margin: 10px 0;
+    font-size: 14px;
+    letter-spacing: 5px;
+    margin: 8px 0;
 }
 
 .parents {
-    margin-top: 25px;
-    font-size: 15px;
+    margin-top: 20px;
+    font-size: 14px;
 }
 
 /* Animations */
@@ -139,22 +135,15 @@ h1 {
 
 /* Petals */
 .petal {
-    position: absolute;
+    position: fixed;
     top: -50px;
-    font-size: 20px;
+    font-size: 18px;
     animation: fall linear infinite;
+    pointer-events: none;
 }
 
 @keyframes fall {
     to { transform: translateY(110vh) rotate(360deg); }
-}
-
-/* Mobile Optimization */
-@media (max-width: 600px) {
-    .monogram { font-size: 40px; }
-    .open-btn { font-size: 14px; padding: 12px 25px; }
-    .scroll { padding: 30px 20px; }
-    .names .main { font-size: 28px; }
 }
 </style>
 </head>
@@ -207,15 +196,16 @@ h1 {
 function openInvite() {
     document.getElementById("openScreen").style.display = "none";
     document.getElementById("scrollContainer").style.display = "block";
+    window.scrollTo(0,0);
 }
 
 /* Petals */
-for (let i = 0; i < 30; i++) {
+for (let i = 0; i < 25; i++) {
     let petal = document.createElement("div");
     petal.classList.add("petal");
     petal.innerHTML = "🌸";
     petal.style.left = Math.random() * 100 + "vw";
-    petal.style.animationDuration = (5 + Math.random() * 5) + "s";
+    petal.style.animationDuration = (6 + Math.random() * 4) + "s";
     document.body.appendChild(petal);
 }
 </script>
