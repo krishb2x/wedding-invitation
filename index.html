@@ -10,16 +10,26 @@
 <style>
 body {
     margin: 0;
-    padding: 20px 10px;
     background: radial-gradient(circle at top, #6b0f1a, #1b0005);
     font-family: 'Cinzel', serif;
     text-align: center;
     color: #f5e6c8;
+    overflow-x: hidden;
 }
 
-/* Opening Screen */
-.open-screen {
-    margin-top: 30vh;
+/* SECTION BASE */
+.section {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+/* OPEN SCREEN */
+#openScreen {
+    flex-direction: column;
 }
 
 .monogram {
@@ -31,7 +41,7 @@ body {
 }
 
 .open-btn {
-    padding: 15px 35px;
+    padding: 14px 35px;
     background: linear-gradient(45deg, #d4af37, #b8860b);
     border-radius: 50px;
     cursor: pointer;
@@ -40,18 +50,25 @@ body {
     color: #5a0f1c;
     font-weight: bold;
     box-shadow: 0 0 20px rgba(212,175,55,0.8);
-    transition: 0.4s;
-    display: inline-block;
-}
-.open-btn:hover { transform: scale(1.05); }
-
-/* Scroll Container */
-.scroll-container {
-    display: none;
-    margin-top: 30px;
-    animation: fadeIn 1.5s ease forwards;
 }
 
+/* INVITE SCREEN */
+#scrollContainer {
+    flex-direction: column;
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    width: 100%;
+    top: 0;
+}
+
+#scrollContainer.active {
+    opacity: 1;
+    visibility: visible;
+    position: relative;
+}
+
+/* Scroll Design */
 .rod {
     width: 100%;
     max-width: 650px;
@@ -63,7 +80,7 @@ body {
 
 .scroll {
     max-width: 650px;
-    margin: auto;
+    margin: 20px auto;
     padding: 40px 20px;
     background: #fff8e7;
     color: #5a0f1c;
@@ -71,7 +88,6 @@ body {
     border-left: 8px solid #d4af37;
     border-right: 8px solid #d4af37;
     position: relative;
-    animation: unfold 1s ease forwards;
 }
 
 .scroll:before {
@@ -117,23 +133,12 @@ h1 {
     font-size: 14px;
 }
 
-/* Animations */
 @keyframes shimmer {
     0% {background-position: -200px;}
     100% {background-position: 200px;}
 }
 
-@keyframes unfold {
-    from { transform: scaleY(0); opacity: 0; }
-    to { transform: scaleY(1); opacity: 1; }
-}
-
-@keyframes fadeIn {
-    from {opacity:0;}
-    to {opacity:1;}
-}
-
-/* Petals */
+/* PETALS */
 .petal {
     position: fixed;
     top: -50px;
@@ -150,14 +155,14 @@ h1 {
 
 <body>
 
-<div class="open-screen" id="openScreen">
+<div class="section" id="openScreen">
     <div class="monogram">S & A</div>
     <div class="open-btn" onclick="openInvite()">
         ✨ OPEN WEDDING INVITATION ✨
     </div>
 </div>
 
-<div class="scroll-container" id="scrollContainer">
+<div class="section" id="scrollContainer">
     <div class="rod"></div>
 
     <div class="scroll">
@@ -195,7 +200,7 @@ h1 {
 <script>
 function openInvite() {
     document.getElementById("openScreen").style.display = "none";
-    document.getElementById("scrollContainer").style.display = "block";
+    document.getElementById("scrollContainer").classList.add("active");
     window.scrollTo(0,0);
 }
 
